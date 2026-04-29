@@ -44,7 +44,7 @@ The dataset is available at the UC Irvine Machine Learning Repository:
 - Support Vector Machines (SVM)  
 
 #### Results
-- From EDA:
+***From EDA:***
 *   **Passing Classes is key:** This is the biggest sign. Graduates usually pass **10–12 classes** in their first year, while most dropouts pass **0 classes**.
 *   **Money is important:** Students who owe tuition or have debt drop out much more often. On the other hand, **76% of students with scholarships graduate**, compared to only 41% of those without one.
 *   **The Age Factor:** The dropout rate peaks for students between 26 and 30 years old.
