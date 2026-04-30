@@ -50,8 +50,15 @@ The dataset is available at the UC Irvine Machine Learning Repository:
 *   **The Age Factor:** The dropout rate peaks for students between 26 and 30 years old.
 *   **Missing Info:** If a student has missing administrative info, they are twice as likely to drop out. It might mean they aren't very "connected" to the school.
 
+***From Baseline Model (Logistic Regression):***
+The baseline model achieved an overall **Accuracy of 88%**, establishing a strong starting point for predictions.
+*   **Recall (Dropout): 0.82** – The model successfully caught 82% of all actual dropouts.
+*   **Precision (Dropout): 0.86** – When the model flags a student at risk, it is right 86% of the time.
+*   **Confusion Matrix Analysis:** The model correctly identified **234 True Positives** (dropouts caught) while missing 50 students (False Negatives). Reducing the False Negatives is the primary goal for future, more advanced models.
+*   **Technical Finding:** Using `class_weight='balanced'` was critical to account for the smaller number of dropout entries, ensuring the model take into consideration class imbalance.
+
 #### Next steps
-1. **Better Models:** I want to try more advanced algorithm to get more accurate predictions.
+1. **Model Improvement:** I will use the baseline Recall of **0.82**. I will implement different models to better capture patterns and improve identification of the "Dropout" class.
 2. **Multiple model:** I plan to build a multiple model that predicts a student's GPA and tells advisors the main reason for their struggle.
 3. **Fixing the Balance:** Since there are fewer dropouts than graduates in the data, I will use techniques to make sure the model learns about both groups equally.
 
@@ -60,7 +67,7 @@ The dataset is available at the UC Irvine Machine Learning Repository:
 
 - [Data Cleaning Notebook](./notebooks/01_data_cleaning.ipynb): Data cleaning process and preparation of the data.
 - [EDA Notebook](./notebooks/02_exploratory_data_analysis.ipynb): The charts, insights, and our first basic model.
-- [Base Model](./notebooks/03_modeling_classification.ipynb): The baseline model and its evaluation.
+- [Classification Model](./notebooks/03_modeling_classification.ipynb): The baseline model and its evaluation.
 - [Final Dataset](./data/processed/02.7_data_final.csv): The clean dataset we used for our analysis.
 
 
