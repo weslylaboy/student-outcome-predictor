@@ -25,7 +25,8 @@ The dataset is available at the UC Irvine Machine Learning Repository:
 - Decision Tree  
 - Random Forest  
 - K-Nearest Neighbors (KNN)  
-- Support Vector Machines (SVM)  
+- Support Vector Machines (SVM) 
+- Neural Networks
 
 **Training:** The model will be trained using data from students with known outcomes (Graduate or Dropout).
 

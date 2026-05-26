@@ -59,7 +59,6 @@ def evaluate_classification_model(y_test, y_pred, model_name="Model", target_nam
 
 def get_model_metrics(y_test, y_pred, model_name):
     """Extract classification metrics and return as a dictionary (one row)."""
-    print("hello")
     return {
         'Model': model_name,
         'Accuracy': round(accuracy_score(y_test, y_pred), 4),
