@@ -67,7 +67,7 @@ The baseline model achieved an overall **Accuracy of 88%**, establishing a stron
 
 - [Data Cleaning Notebook](./notebooks/01_data_cleaning.ipynb): Data cleaning process and preparation of the data.
 - [EDA Notebook](./notebooks/02_exploratory_data_analysis.ipynb): The charts, insights, and our first basic model.
-- [Classification Model](./notebooks/03_modeling_classification.ipynb): The baseline model and its evaluation.
+- [Classification Model](notebooks/03_classification_model.ipynb): The baseline model and its evaluation.
 - [Final Dataset](./data/processed/02.7_data_final.csv): The clean dataset we used for our analysis.
 
 
