@@ -41,7 +41,7 @@ def evaluate_classification_model(y_test, y_pred, model_name="Model", target_nam
     Prints a classification report and displays a confusion matrix.
     """
     print(f"{model_name}: evaluation results")
-    print(classification_report(y_test, y_pred, target_names=target_names))
+    print(classification_report(y_test, y_pred, target_names=target_names, zero_division=0))
 
     # Create the display
     disp = ConfusionMatrixDisplay.from_predictions(
@@ -79,27 +79,20 @@ def predict_with_threshold(model, X_test, y_test, threshold=0.4, model_name="Mod
     - model: The trained scikit-learn model or pipeline.
     - X_test: Test features.
     - y_test: True labels.
-    - threshold: Probability threshold for the positive class (default 0.5).
+    - threshold: Probability threshold for the positive class (default 0.4).
     - model_name: String for reporting/labeling.
     """
     # Get probabilities for all classes
-    # predict_proba returns [prob_class_0, prob_class_1]
+    # predict_proba returns [prob_class_0 (Dropout), prob_class_1 (Graduate)]
     probs = model.predict_proba(X_test)
 
-    # Assuming class 0 is 'Dropout' and class 1 is 'Graduate'
-    # We want to flag 'Dropout' (0) if the probability of 'Dropout' is > (1 - threshold)
-    # Or simply: if probability of being class 0 is high, label as 0.
-
-    # In your code snippet: probs[:, 0] is the probability of class 0 (Dropout).
-    # If prob of Dropout > 0.6 (or if you prefer the Graduate threshold logic):
-    # Let's keep it consistent with your thresholding logic:
+    # probs[:, 0] is the probability of class 0 (Dropout).
+    # If prob of Dropout <= 0.4, Graduation >= 0.6:
     dropout_probs = probs[:, 0]
 
-    # Apply custom threshold for class 0 (Dropout)
-    # e.g., if dropout_prob > 0.6 (which is equivalent to graduate_prob <= 0.4)
-    # The snippet you had used: (probs <= 0.4).astype(int)
-    # Let's generalize this:
-    y_pred_custom = (dropout_probs >= (1 - threshold)).astype(int)
+    # Apply custom threshold for class 0 (dropout)
+    # probability of belonging of class 0 (Dropout) <= 40%, return 1.
+    y_pred_custom = (dropout_probs <= threshold).astype(int)
 
     # Evaluate
     evaluate_classification_model(
