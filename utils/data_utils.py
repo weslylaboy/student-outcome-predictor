@@ -1,9 +1,7 @@
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import (classification_report, ConfusionMatrixDisplay, accuracy_score, precision_score,
                              recall_score, f1_score, mean_squared_error, mean_absolute_error, r2_score)
-from workflows.runtime.types import results
 
 
 def fix_datatypes(df):
@@ -103,14 +101,17 @@ def predict_with_threshold(model, X_test, y_test, threshold=0.4, model_name="Mod
 
     return y_pred_custom
 
-def evaluate_regression_model(name, pipeline, X_train, y_train, X_test, y_test, results):
 
-    pipeline.fit(X_train, y_train)
-    y_pred = pipeline.predict(X_test)
+def evaluate_regression_model(name, model, X_test, y_test, results):
+
+    y_pred = model.predict(X_test)
+
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
     mae = mean_absolute_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
+
     results[name] = {'RMSE': round(rmse, 4), 'MAE': round(mae, 4), 'R²': round(r2, 4)}
+
     print(f"[{name}] RMSE: {rmse:.4f} | MAE: {mae:.4f} | R²: {r2:.4f}")
 
-    return pipeline
+    return y_pred
