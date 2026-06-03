@@ -103,18 +103,14 @@ def predict_with_threshold(model, X_test, y_test, threshold=0.4, model_name="Mod
 
     return y_pred_custom
 
-def evaluate_regression_model(name, pipeline, X_train, y_train, X_test, y_test):
-    # This function trains a pipeline, generates predictions on the test set,
-    # computes all three metrics and stores them in a shared `results` dictionary.
-    # Printing the comparison table after each model lets me watch the leader step by step.
+def evaluate_regression_model(name, pipeline, X_train, y_train, X_test, y_test, results):
 
-    # results = {}
     pipeline.fit(X_train, y_train)
     y_pred = pipeline.predict(X_test)
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
-    mae  = mean_absolute_error(y_test, y_pred)
-    r2   = r2_score(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
     results[name] = {'RMSE': round(rmse, 4), 'MAE': round(mae, 4), 'R²': round(r2, 4)}
-    print(f"[{name}]  RMSE: {rmse:.4f} | MAE: {mae:.4f} | R²: {r2:.4f}")
+    print(f"[{name}] RMSE: {rmse:.4f} | MAE: {mae:.4f} | R²: {r2:.4f}")
 
     return pipeline
