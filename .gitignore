@@ -1,5 +1,8 @@
 anaconda_projects
 .idea
+.junie
 .DS_Store
+
+.env
 
 ideas
